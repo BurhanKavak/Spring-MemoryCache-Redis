@@ -9,6 +9,9 @@ services:
       - my-redis
     networks:
       - cache
+    environment:
+       SPRING_DATA_REDIS_HOST: my-redis
+       SPRING_DATA_REDIS_PORT: 6379
   my-redis:
     image: redis/redis-stack
     restart: always

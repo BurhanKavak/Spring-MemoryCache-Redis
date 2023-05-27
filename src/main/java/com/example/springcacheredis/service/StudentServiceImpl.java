@@ -3,7 +3,6 @@ package com.example.springcacheredis.service;
 import com.example.springcacheredis.model.Student;
 import com.example.springcacheredis.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,16 +16,20 @@ import java.util.Optional;
 @Slf4j
 public class StudentServiceImpl implements StudentService{
 
-    @Autowired
-    private  StudentRepository studentRepository;
 
+    private final  StudentRepository studentRepository;
+
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
 
     @Override
     @Cacheable("students")
     public List<Student> getStudents() {
-        List<Student> students = new ArrayList<>();
-        studentRepository.findAll().forEach(student -> students.add(student));
+       List<Student> students = new ArrayList<>();
+        studentRepository.findAll().forEach(students::add);
+
 
         try {
             log.info("2 saniye bekleyiniz");
@@ -35,6 +38,8 @@ public class StudentServiceImpl implements StudentService{
             e.printStackTrace();
         }
         return students;
+
+
     }
 
     @Override
