@@ -1,4 +1,4 @@
-## :wave: REDIS
+# :triangular_flag_on_post: REDIS
 ![](/images/Redis.png)
 
 **Redis, bir açık kaynaklı, hafıza tabanlı (in-memory) bir veri yapısı sunucusudur. İlk olarak anahtar-değer çiftlerini depolamak için kullanılan Redis, zamanla birçok farklı veri yapısı ve işlevi destekleyen bir veritabanı çözümü haline gelmiştir.**
